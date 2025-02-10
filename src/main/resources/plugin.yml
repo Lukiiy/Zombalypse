@@ -11,4 +11,4 @@ commands:
   zombspawn:
     description: Spawns a zombie of a specific type.
     usage: '/<command> <type>'
-    permission: zombalypse.spawncmd
+    permission: zombalypse.spawn
