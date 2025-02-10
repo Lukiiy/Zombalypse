@@ -1,0 +1,14 @@
+name: Zombalypse
+version: '1.0'
+main: me.lukiiy.zombalypse.Zombalypse
+api-version: '1.21'
+authors: [ Lukiiy ]
+description: Adds custom zombie types.
+commands:
+  zombalypse:
+    description: Reloads the plugin.
+    permission: zombalypse.reload
+  zombspawn:
+    description: Spawns a zombie of a specific type.
+    usage: '/<command> <type>'
+    permission: zombalypse.spawncmd
