@@ -45,7 +45,7 @@ public final class Zombalypse extends JavaPlugin {
         registerType(new Ninja(rng));
         registerType(new Pillar());
         registerType(new Puller());
-        registerType(new Robber(rng));
+        registerType(new Thief(rng));
         registerType(new Latcher());
         registerType(new Soul(rng));
         registerType(new Tank());

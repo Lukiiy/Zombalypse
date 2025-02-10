@@ -14,18 +14,18 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
 
-public class Robber implements CustomType {
+public class Thief implements CustomType {
     private final Random random;
 
-    public Robber(Random random) {
+    public Thief(Random random) {
         this.random = random;
     }
 
     @Override
-    public String getId() {return "robber";}
+    public String getId() {return "thief";}
 
     @Override
-    public String getName() {return "Robber";}
+    public String getName() {return "Thief";}
 
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
