@@ -63,6 +63,7 @@ public class Soul implements CustomType {
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, PotionEffect.INFINITE_DURATION, 1, false, false));
         zombie.setCollidable(false);
         zombie.setSilent(true);
+        zombie.setLootTable(null);
     }
 
     @Override

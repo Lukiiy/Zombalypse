@@ -1,17 +1,12 @@
 package me.lukiiy.zombalypse;
 
+import org.bukkit.GameMode;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.PigZombie;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.*;
 
 import java.util.*;
 
@@ -54,6 +49,13 @@ public class Listen implements Listener {
     @EventHandler
     public void noCombustion(EntityCombustEvent e) {
         if (instance.getConfig().getBoolean("disableCombustion") && e.getEntity() instanceof Zombie) e.setCancelled(true);
+    }
+
+    // cmon.
+    @EventHandler
+    public void pigZombieTarget(PigZombieAngerEvent e) {
+        if (!instance.getConfig().getBoolean("zombifiedPiglinAttack") || !(e.getTarget() instanceof Player p)) return;
+        if (p.isInvulnerable() || p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR) e.setCancelled(true);
     }
 
     @EventHandler(priority = EventPriority.LOW)
