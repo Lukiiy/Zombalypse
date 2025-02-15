@@ -2,11 +2,8 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class Giant implements CustomType {
     @Override
@@ -21,15 +18,23 @@ public class Giant implements CustomType {
 
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
-        if (!zombie.getLocation().add(0,2,0).getBlock().getType().isAir()) {
+        if (!zombie.getLocation().add(0,8,0).getBlock().getType().isAir()) {
             e.setCancelled(true);
             return;
         }
+
         zombie.setAdult();
+        zombie.setRemoveWhenFarAway(true);
 
-        AttributeInstance s = zombie.getAttribute(Attribute.GENERIC_SCALE);
-        if (s != null) s.setBaseValue(3);
-
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, PotionEffect.INFINITE_DURATION, 2, false, false));
+        incrAttribute(zombie, Attribute.GENERIC_SCALE, 2);
+        incrAttribute(zombie, Attribute.GENERIC_JUMP_STRENGTH, .2);
+        incrAttribute(zombie, Attribute.GENERIC_BURNING_TIME, -.2);
+        incrAttribute(zombie, Attribute.GENERIC_ATTACK_DAMAGE, 5);
+        incrAttribute(zombie, Attribute.GENERIC_ATTACK_KNOCKBACK, 1.5);
+        incrAttribute(zombie, Attribute.GENERIC_ARMOR, 0.75);
+        incrAttribute(zombie, Attribute.GENERIC_FOLLOW_RANGE, 16);
+        incrAttribute(zombie, Attribute.GENERIC_SAFE_FALL_DISTANCE, 6);
+        incrAttribute(zombie, Attribute.GENERIC_STEP_HEIGHT, 2);
+        incrAttribute(zombie, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 1);
     }
 }

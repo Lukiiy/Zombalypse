@@ -2,7 +2,7 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.Zombalypse;
 import me.lukiiy.zombalypse.CustomType;
-import org.bukkit.entity.Entity;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -21,9 +21,12 @@ public class Pillar implements CustomType {
 
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
-        Entity last = zombie;
+        Zombie last = zombie;
         for (int i = 0; i < 2; i++) {
-            Entity z = zombie.getWorld().spawn(zombie.getLocation(), zombie.getType().getEntityClass(), it -> it.getPersistentDataContainer().set(Zombalypse.key, PersistentDataType.STRING, "default"));
+            Zombie z = (Zombie) zombie.getWorld().spawn(zombie.getLocation(), zombie.getType().getEntityClass(), it -> it.getPersistentDataContainer().set(Zombalypse.key, PersistentDataType.STRING, "default"));
+
+            incrAttribute(z, Attribute.GENERIC_MAX_HEALTH, -10);
+
             last.addPassenger(z);
             last = z;
         }

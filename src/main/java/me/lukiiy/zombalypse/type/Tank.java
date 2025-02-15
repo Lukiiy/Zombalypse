@@ -4,7 +4,6 @@ import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -32,11 +31,11 @@ public class Tank implements CustomType {
         }
 
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, PotionEffect.INFINITE_DURATION, 1, false, false));
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, PotionEffect.INFINITE_DURATION, 4, false, false));
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 2, false, false));
 
-        AttributeInstance kb = zombie.getAttribute(Attribute.GENERIC_KNOCKBACK_RESISTANCE);
-        if (kb != null) kb.setBaseValue(100f);
+        incrAttribute(zombie, Attribute.GENERIC_ATTACK_DAMAGE, 15);
+        incrAttribute(zombie, Attribute.GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE, 100);
+        incrAttribute(zombie, Attribute.GENERIC_KNOCKBACK_RESISTANCE, 100);
     }
 
     @Override
@@ -46,6 +45,6 @@ public class Tank implements CustomType {
 
     @Override
     public void whenAttacked(Zombie zombie, EntityDamageByEntityEvent e) {
-        zombie.getWorld().playSound(zombie.getLocation(), Sound.BLOCK_ANVIL_FALL, 1, 1);
+        zombie.getWorld().playSound(zombie.getLocation(), Sound.BLOCK_ANVIL_LAND, 0.25f, 1);
     }
 }

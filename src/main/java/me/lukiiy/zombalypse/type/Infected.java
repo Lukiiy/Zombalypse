@@ -28,6 +28,7 @@ public class Infected implements CustomType {
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
         if (!(e.getEntity() instanceof LivingEntity l)) return;
+
         l.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, 1, false, true));
         l.addPotionEffect(new PotionEffect(PotionEffectType.OOZING, 400, 1, false, true));
     }

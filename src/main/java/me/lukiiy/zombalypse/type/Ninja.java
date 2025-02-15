@@ -4,7 +4,6 @@ import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Zombie;
@@ -47,16 +46,17 @@ public class Ninja implements CustomType {
         zombie.setAdult();
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 1, false, false, false));
 
-        AttributeInstance waterSpeed = zombie.getAttribute(Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY);
-        if (waterSpeed != null) waterSpeed.setBaseValue(waterSpeed.getBaseValue() + 3);
+        incrAttribute(zombie, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 3);
     }
 
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 30, 1, false, false));
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 10, 4, false, false));
+
         if (random.nextInt(4) == 0) {
             if (!(e.getEntity() instanceof LivingEntity l)) return;
+
             l.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 1, false, true));
             zombie.getWorld().playSound(zombie, Sound.ENTITY_SPLASH_POTION_BREAK, 1, 1);
         }

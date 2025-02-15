@@ -1,5 +1,3 @@
-# ------------------------
-
 # replaceHostiles: replaces *SOME* hostile mobs with zombies
 replaceHostiles: false
 
@@ -12,8 +10,8 @@ endSpawn: true
 # displayType: show the zombie's type as the zombie's nametag
 displayType: false
 
-# zombifiedPiglinAttack: makes Zombified Piglins attack players without players having to attack them first.
-zombifiedPiglinAttack: true
+# disableCombustion: makes Zombies (& any other zombie type) unable to combust/burn.
+disableCombustion: false
 
-# zombifiedPiglinRadius: half of the area that the Zombified Piglin will look after players.
-zombifiedPiglinRadius: 16
+# zombifiedPiglinAttack: makes Zombified Piglins RANDOMLY attack players without players having to attack them first.
+zombifiedPiglinAttack: true

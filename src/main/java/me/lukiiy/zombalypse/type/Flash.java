@@ -1,6 +1,8 @@
 package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.potion.PotionEffect;
@@ -19,6 +21,12 @@ public class Flash implements CustomType {
 
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
+        if (zombie instanceof PigZombie) {
+            e.setCancelled(true);
+            return;
+        }
+
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 4, false, false));
+        incrAttribute(zombie, Attribute.GENERIC_WATER_MOVEMENT_EFFICIENCY, 1.5);
     }
 }

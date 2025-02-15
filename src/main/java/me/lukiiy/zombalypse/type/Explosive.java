@@ -21,12 +21,13 @@ public class Explosive implements CustomType {
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
         if (zombie.getEquipment() == null) return;
+
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT), false);
         zombie.getEquipment().setHelmetDropChance(0);
     }
 
     @Override
     public void onDeath(Zombie zombie, EntityDeathEvent e) {
-        zombie.getWorld().createExplosion(zombie.getLocation(), 2.5f);
+        zombie.getWorld().createExplosion(zombie.getLocation(), 2f);
     }
 }

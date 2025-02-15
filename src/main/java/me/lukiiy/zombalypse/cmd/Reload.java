@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 public class Reload implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        commandSender.sendMessage("§aConfig reloaded!");
+        commandSender.sendMessage("§aZombalypse Config reloaded!");
         Zombalypse.getInstance().reloadConfig();
         return true;
     }

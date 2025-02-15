@@ -33,9 +33,8 @@ public class Puller implements CustomType {
 
             if (!(e.getEntity() instanceof LivingEntity l)) return;
 
-            l.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 40, 1, false, false));
             l.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 8, 2, false, false));
-            zombie.getWorld().spawnParticle(Particle.DUST_PLUME, e.getEntity().getLocation(), 6, 0,0.5,0, 0.25);
+            zombie.getWorld().spawnParticle(Particle.DUST_PLUME, l.getLocation().add(0, 1, 0), 6);
         }, 5L);
     }
 }

@@ -1,12 +1,11 @@
 package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class Hopper implements CustomType {
     @Override
@@ -21,7 +20,9 @@ public class Hopper implements CustomType {
 
     @Override
     public void onSpawn(Zombie zombie, CreatureSpawnEvent e) {
-        zombie.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, PotionEffect.INFINITE_DURATION, 4, false, false));
+        incrAttribute(zombie, Attribute.GENERIC_JUMP_STRENGTH, 1.3);
+        incrAttribute(zombie, Attribute.GENERIC_FALL_DAMAGE_MULTIPLIER, -1);
+        incrAttribute(zombie, Attribute.GENERIC_FOLLOW_RANGE, 8);
     }
 
     @Override

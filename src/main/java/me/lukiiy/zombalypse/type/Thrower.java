@@ -37,20 +37,26 @@ public class Thrower implements CustomType {
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) { // TODO
         if (!(e.getEntity() instanceof LivingEntity l)) return;
+
         zombie.addPassenger(l);
         zombie.getWorld().playSound(zombie.getLocation(), Sound.ENTITY_HORSE_SADDLE, 1, 1);
-        Bukkit.getScheduler().runTaskLater(Zombalypse.getInstance(), () -> {
-            if (zombie.removePassenger(l)) Bukkit.getScheduler().runTaskLater(Zombalypse.getInstance(), () -> {
-                Vector d = zombie.getLocation().getDirection().normalize();
-                Vector v = d.multiply(1 + random.nextDouble(1.25)).setY(1 + random.nextDouble(0.75));
 
-                l.setVelocity(v);
-                if (l instanceof Player p) {
-                    p.playSound(p, Sound.BLOCK_PISTON_EXTEND, 1, 1);
-                    p.spawnParticle(Particle.CLOUD, p.getLocation(), 6, 0,0.5,0, 0.25);
-                }
-            }, 1L);
-        }, 15L);
+        Bukkit.getScheduler().runTaskLater(Zombalypse.getInstance(), () -> {
+            if (!zombie.getPassengers().isEmpty() && zombie.getPassengers().getFirst() == l) {
+                zombie.removePassenger(l);
+                Bukkit.getScheduler().runTaskLater(Zombalypse.getInstance(), () -> {
+                    Vector d = zombie.getLocation().getDirection().normalize();
+                    Vector v = d.multiply(1 + random.nextDouble(1.25)).setY(1 + random.nextDouble(0.75));
+
+                    l.setVelocity(v);
+
+                    if (l instanceof Player p) {
+                        p.playSound(p, Sound.BLOCK_PISTON_EXTEND, 1, 1);
+                        p.spawnParticle(Particle.CLOUD, p.getLocation().add(0, 1.5, 0), 6, 0.05);
+                    }
+                }, 1L);
+            }
+        }, 8L);
     }
 
     @Override

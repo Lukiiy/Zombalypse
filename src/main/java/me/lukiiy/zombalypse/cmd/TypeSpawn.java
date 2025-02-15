@@ -38,7 +38,7 @@ public class TypeSpawn implements CommandExecutor, TabExecutor {
             return true;
         }
 
-        commandSender.sendMessage("§aSpawned " + type.getName() + " type zombie.");
+        commandSender.sendMessage("§aSpawned " + type.getName() + " (" + type.getId() + ") type zombie.");
         p.getWorld().spawn(p.getLocation(), Zombie.class, it -> it.getPersistentDataContainer().set(Zombalypse.key, PersistentDataType.STRING, type.getId()));
         return true;
     }
