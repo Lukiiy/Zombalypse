@@ -54,6 +54,7 @@ public class Soul implements CustomType {
         if (zEquip != null) {
             zEquip.setHelmet(new ItemStack(Material.ZOMBIE_HEAD), false);
             if (zombie.getType() == EntityType.ZOMBIFIED_PIGLIN) zEquip.setHelmet(new ItemStack(Material.PIGLIN_HEAD), false);
+
             zEquip.setHelmetDropChance(0);
             zEquip.setItemInMainHand(null);
             zEquip.setItemInOffHand(null);

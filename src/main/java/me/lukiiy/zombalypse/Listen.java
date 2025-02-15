@@ -66,7 +66,7 @@ public class Listen implements Listener {
 
         if (e.getEntity() instanceof Zombie z) {
             CustomType type = instance.getType(z);
-            if (type != null) type.onAttack(z, e);
+            if (type != null) type.whenAttacked(z, e);
         }
     }
 
