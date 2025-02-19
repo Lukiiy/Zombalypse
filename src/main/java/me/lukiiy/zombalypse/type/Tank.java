@@ -4,6 +4,7 @@ import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -40,7 +41,7 @@ public class Tank implements CustomType {
 
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
-        if (e.getEntity() instanceof Player p && p.isBlocking()) p.setCooldown(Material.SHIELD, 40);
+        if (e.getEntity() instanceof Player p && p.isBlocking()) p.setVelocity(p.getVelocity().setY(.75));
     }
 
     @Override

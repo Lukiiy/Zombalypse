@@ -2,6 +2,7 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -28,6 +29,7 @@ public class Infected implements CustomType {
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
         if (!(e.getEntity() instanceof LivingEntity l)) return;
+        if (e.getEntity() instanceof Player p && p.isBlocking()) return;
 
         l.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, 1, false, true));
         l.addPotionEffect(new PotionEffect(PotionEffectType.OOZING, 400, 1, false, true));

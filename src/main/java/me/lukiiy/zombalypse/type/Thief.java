@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
@@ -74,5 +75,10 @@ public class Thief implements CustomType {
         }
 
         world.playSound(location, Sound.ENTITY_CHICKEN_EGG, .5f, 1);
+    }
+
+    @Override
+    public void onTarget(Zombie zombie, EntityTargetEvent e) {
+        zombie.swingOffHand();
     }
 }

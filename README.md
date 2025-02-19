@@ -1,2 +1,3 @@
 # Zombalypse
- An apocalypse and custom zombie plugin.
+
+An apocalypse and custom zombie plugin.

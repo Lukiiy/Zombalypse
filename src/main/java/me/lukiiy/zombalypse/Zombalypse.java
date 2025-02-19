@@ -47,6 +47,7 @@ public final class Zombalypse extends JavaPlugin {
         registerType(new Tank());
         registerType(new Thrower(rng));
         registerType(new WindBuster());
+        registerType(new Dash(rng));
     }
 
     public static Zombalypse getInstance() {

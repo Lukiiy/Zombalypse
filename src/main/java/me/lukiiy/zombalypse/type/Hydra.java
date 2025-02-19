@@ -43,7 +43,7 @@ public class Hydra implements CustomType {
 
         for (int i = 0; i < 2; i++) {
             Zombie copy = (Zombie) zombie.getWorld().spawn(zombie.getLocation(), zombie.getType().getEntityClass(), it -> {
-                Zombalypse.getInstance().setType(zombie, Zombalypse.getInstance().getType("hydra"));
+                Zombalypse.getInstance().setType((Zombie) it, Zombalypse.getInstance().getType("hydra"));
                 multiples.put((Zombie) it, multi + 1);
             });
 

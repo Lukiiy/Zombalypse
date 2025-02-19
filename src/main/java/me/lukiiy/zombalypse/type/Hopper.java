@@ -2,6 +2,7 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -27,6 +28,7 @@ public class Hopper implements CustomType {
 
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
+        if (e.getEntity() instanceof Player p && p.isBlocking()) return;
         zombie.setVelocity(zombie.getVelocity().multiply(0.25));
     }
 

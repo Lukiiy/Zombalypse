@@ -6,6 +6,7 @@ import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -51,6 +52,8 @@ public class Ninja implements CustomType {
 
     @Override
     public void onAttack(Zombie zombie, EntityDamageByEntityEvent e) {
+        if (e.getEntity() instanceof Player p && p.isBlocking()) return;
+
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 30, 1, false, false));
         zombie.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 10, 4, false, false));
 
