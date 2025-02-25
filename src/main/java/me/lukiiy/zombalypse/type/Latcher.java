@@ -3,7 +3,6 @@ package me.lukiiy.zombalypse.type;
 import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 

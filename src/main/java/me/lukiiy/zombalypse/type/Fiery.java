@@ -2,7 +2,6 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;

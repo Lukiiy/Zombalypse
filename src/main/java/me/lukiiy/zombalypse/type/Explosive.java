@@ -1,7 +1,9 @@
 package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -24,6 +26,8 @@ public class Explosive implements CustomType {
 
         zombie.getEquipment().setHelmet(new ItemStack(Material.TNT), false);
         zombie.getEquipment().setHelmetDropChance(0);
+
+        zombie.setLootTable(Bukkit.getLootTable(NamespacedKey.minecraft("entities/creeper")));
     }
 
     @Override

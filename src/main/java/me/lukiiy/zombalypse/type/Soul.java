@@ -21,15 +21,11 @@ import java.util.Random;
 
 public class Soul implements CustomType {
     private static final List<ItemStack> soulItems = new ArrayList<>();
-    final Random random;
+    private final Random random;
 
     static {
-        ItemStack pot = new ItemStack(Material.SPLASH_POTION);
-        PotionMeta potMeta = (PotionMeta) pot.getItemMeta();
-        if (potMeta != null) {potMeta.setBasePotionType(PotionType.HARMING);}
-        pot.setItemMeta(potMeta);
-
-        soulItems.add(pot);
+        soulItems.add(splashPot(PotionType.HARMING));
+        soulItems.add(splashPot(PotionType.SLOWNESS));
         soulItems.add(new ItemStack(Material.FIRE_CHARGE));
         soulItems.add(new ItemStack(Material.ARROW));
     }
@@ -84,5 +80,15 @@ public class Soul implements CustomType {
 
         w.spawnParticle(Particle.LARGE_SMOKE, zombie.getLocation().add(0, 1, 0), 1); // TODO
         w.playSound(zombie.getLocation(), Sound.ENTITY_VEX_DEATH, 0.25f, 1);
+    }
+
+    private static ItemStack splashPot(PotionType potionType) {
+        ItemStack pot = new ItemStack(Material.SPLASH_POTION);
+        PotionMeta potMeta = (PotionMeta) pot.getItemMeta();
+
+        if (potMeta != null) potMeta.setBasePotionType(potionType);
+        pot.setItemMeta(potMeta);
+
+        return pot;
     }
 }

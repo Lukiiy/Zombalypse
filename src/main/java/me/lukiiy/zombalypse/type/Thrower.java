@@ -2,17 +2,12 @@ package me.lukiiy.zombalypse.type;
 
 import me.lukiiy.zombalypse.CustomType;
 import me.lukiiy.zombalypse.Zombalypse;
-import me.lukiiy.zombalypse.CustomType;
 import org.bukkit.Bukkit;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.Random;
@@ -48,12 +43,9 @@ public class Thrower implements CustomType {
                     Vector d = zombie.getLocation().getDirection().normalize();
                     Vector v = d.multiply(1 + random.nextDouble(1.25)).setY(1 + random.nextDouble(0.75));
 
-                    l.setVelocity(v);
+                    zombie.getWorld().playSound(zombie.getLocation(), Sound.BLOCK_PISTON_EXTEND, .75f, 1);
 
-                    if (l instanceof Player p) {
-                        p.playSound(p, Sound.BLOCK_PISTON_EXTEND, 1, 1);
-                        p.spawnParticle(Particle.CLOUD, p.getLocation().add(0, 1.5, 0), 6, 0.05);
-                    }
+                    l.setVelocity(v);
                 }, 1L);
             }
         }, 8L);
