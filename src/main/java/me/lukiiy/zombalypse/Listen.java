@@ -26,7 +26,7 @@ public class Listen implements Listener {
         World world = entity.getWorld();
 
         // Extra Spawns || Entity Replace
-        if ((instance.getConfig().getBoolean("endSpawn") && world.getEnvironment() == World.Environment.THE_END && entity.getType() == EntityType.ENDERMAN && random.nextInt(8) == 0) || (instance.getConfig().getBoolean("replaceHostiles") && REPLACEABLE.contains(entity.getType()))) {
+        if ((instance.getConfig().getBoolean("endSpawn") && world.getEnvironment() == World.Environment.THE_END && entity.getType() == EntityType.ENDERMAN && random.nextInt(6) == 0) || (instance.getConfig().getBoolean("replaceHostiles") && REPLACEABLE.contains(entity.getType()))) {
             world.spawnEntity(entity.getLocation(), EntityType.ZOMBIE);
             e.setCancelled(true);
             return;
@@ -41,7 +41,18 @@ public class Listen implements Listener {
             if (instance.getConfig().getBoolean("displayType") && !type.getName().isEmpty()) zombie.setCustomName(type.getName());
 
             // Zombified Piglin random auto target
-            if (instance.getConfig().getBoolean("zombifiedPiglinAttack") && zombie instanceof PigZombie pigZombie) pigZombie.setAngry(true);
+            if (instance.getConfig().getBoolean("zombifiedPiglinAttack") && zombie instanceof PigZombie pigZombie) {
+                pigZombie.setAngry(true);
+                if (random.nextDouble(4) == 0) {
+                    Player nearest = world.getPlayers().stream()
+                            .filter(Entity::isValid)
+                            .min(Comparator.comparingDouble(targets -> targets.getLocation().distanceSquared(zombie.getLocation())))
+                            .orElse(null);
+
+                    if (nearest == null) return;
+                    pigZombie.setTarget(nearest);
+                }
+            }
         }
     }
 
